@@ -26,5 +26,7 @@ public class StudentTestServiceImpl implements StudentTestService {
         String secondName = in.nextLine();
         Student student = new Student(firstName,secondName);
         StudentTest studentTest = new StudentTest(student, questions);
+        studentTest.compliteAnswers();
+        studentTest.printAnswers();
     }
 }

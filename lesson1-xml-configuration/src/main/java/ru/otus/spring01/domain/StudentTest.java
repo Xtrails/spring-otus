@@ -3,6 +3,7 @@ package ru.otus.spring01.domain;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class StudentTest {
 
@@ -15,10 +16,26 @@ public class StudentTest {
         this.questions = questions;
     }
 
-    public void compliteAnswers(){
+    public void compliteAnswers() {
         for (Question question : questions) {
             int answer = 0;
+            System.out.println(question.getText());
+            System.out.println("Выберее вариант ответа:");
+            for (int i = 0; i < question.getAnswerOptions().size(); i++) {
+                System.out.println("  " + i + ": " + question.getAnswerOptions().get(i));
+            }
+            Scanner in = new Scanner(System.in);
+            answer = in.nextInt();
+            String answerStr = question.getAnswerOptions().get(answer);
+            if(answerStr!=null && !answerStr.isEmpty()){
+                answers.put(question,answerStr);
+            }
+        }
+    }
 
+    public void printAnswers(){
+        for (Map.Entry<Question, String> entry : answers.entrySet()) {
+            System.out.println(entry.getKey().getText() + " - " + entry.getValue());
         }
     }
 
